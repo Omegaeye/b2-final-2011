@@ -41,7 +41,7 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     expect(page).to have_content(@flight1.departure)
     expect(page).to have_content(@passenger1.name)
     expect(page).to have_content(@passenger1.age)
-    expect(page).to_not have_content(@passenger6.age)
+    expect(page).to_not have_content(@passenger6.name)
     expect(page).to_not have_content(@passenger6.age)
     expect(page).to have_content("Average Age of Passengers")
     expect(page).to have_content(@flight1.passengers.average_age)
@@ -52,6 +52,13 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     click_button("Remove Passenger")
     expect(current_path).to eq(flight_path(@flight1))
     expect(page).to_not have_content(@passenger1.name)
+  end
+
+  it "test within" do
+    within "#passenger-#{@passenger1.id}" do
+      expect(page).to have_content(@passenger1.name)
+      expect(page).to have_content(@passenger1.age)
+    end
   end
 
 end

@@ -29,16 +29,26 @@ RSpec.describe 'As visitor, when I visit flight index page' do
   end
 
   it "I see all flights and details ordered by alphabetical departure city" do
-    expect(page).to have_content("Departure")
-    expect(page).to have_content("Arrival")
-    expect(page).to have_content("Time")
-    expect(page).to have_content("Date")
-    expect(page).to have_content("Number")
-    expect(page).to have_content(@flight1.number)
-    expect(page).to have_content(@flight1.date)
-    expect(page).to have_content(@flight1.time)
-    expect(page).to have_content(@flight1.arrival)
-    expect(page).to have_content(@flight1.departure)
+      expect(page).to have_content("Departure")
+      expect(page).to have_content("Arrival")
+      expect(page).to have_content("Time")
+      expect(page).to have_content("Date")
+      expect(page).to have_content("Number")
+  end
+
+  it "test within" do
+    within "#flight-#{@flight1.id}" do
+      expect(page).to have_content(@flight1.number)
+      expect(page).to have_content(@flight1.date)
+      expect(page).to have_content(@flight1.time)
+      expect(page).to have_content(@flight1.arrival)
+      expect(page).to have_content(@flight1.departure)
+    end
+  end
+
+  it "I see Flights order by alphabetical for departure city and passenger counts" do
+    expect(@flight5.departure).to appear_before(@flight3.departure)
+    expect(@flight1.arrival).to appear_before(@flight2.arrival)
 
   end
 

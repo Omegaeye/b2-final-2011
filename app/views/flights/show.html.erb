@@ -38,6 +38,7 @@
               <tr style="text-align:center">
                 <td><%= passenger.name %></td>
                 <td><%= passenger.age %></td>
+                <td><%= button_to "Remove Passenger", flight_path(@flight.id), method: :delete, local: true, params:{remove: passenger.id} %></td>
               </tr>
             </section>
           <% end %>

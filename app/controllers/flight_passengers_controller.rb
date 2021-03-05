@@ -1,2 +1,4 @@
 class FlightPassengersController < ApplicationController
+
+
 end

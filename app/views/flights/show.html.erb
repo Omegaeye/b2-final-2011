@@ -34,7 +34,7 @@
       <tbody>
         <% @flight.passengers.each do |passenger| %>
           <% if passenger.age > 18 %>
-            <section id="flight-<%= passenger.id %>">
+            <section id="passenger-<%= passenger.id %>">
               <tr style="text-align:center">
                 <td><%= passenger.name %></td>
                 <td><%= passenger.age %></td>

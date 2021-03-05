@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
 
-  resources :flights
-  resources :passengers
+  resources :flights, only: [:index, :show, :destroy]
 end

@@ -7,11 +7,12 @@
           <th scope="col" class="white_glow">Time</th>
           <th scope="col" class="white_glow">Departure</th>
           <th scope="col" class="white_glow">Arrivals</th>
+          <th scope="col" class="white_glow">Number of Passengers</th>
 
         </tr>
       </thead>
       <tbody>
-        <% @flights.each do |flight| %>
+        <% @flights.departure_order.each do |flight| %>
           <section id="flight-<%= flight.id %>">
             <tr style="text-align:center">
               <td><%= link_to flight.number, flight_path(flight) %></td>
@@ -19,6 +20,7 @@
               <td><%= flight.time %></td>
               <td><%= flight.departure %></td>
               <td><%= flight.arrival %></td>
+              <td><%= flight.passengers.count %></td>
             </tr>
           </section>
         <% end %>

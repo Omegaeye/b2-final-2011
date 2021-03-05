@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'As visitor, when I visit flight index page' do
   before :each do
+    Flight.destroy_all
+    Passenger.destroy_all
+    FlightPassenger.destroy_all
+
     @flight1 = Flight.create!(number: "1", date: "01/01/10", time: "10:00 AM", departure: "Denver", arrival: "Cancun")
     @flight2 = Flight.create!(number: "2", date: "01/01/10", time: "11:00 AM", departure: "Denver", arrival: "New York City")
     @flight3 = Flight.create!(number: "3", date: "01/01/10", time: "9:00 AM", departure: "Manhattan", arrival: "San Franscisco")
@@ -41,6 +45,13 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     expect(page).to_not have_content(@passenger6.age)
     expect(page).to have_content("Average Age of Passengers")
     expect(page).to have_content(@flight1.passengers.average_age)
+  end
+
+  it "I can remove passenger from flight" do
+    expect(page).to have_button("Remove Passenger")
+    click_button("Remove Passenger")
+    expect(current_path).to eq(flight_path(@flight1))
+    expect(page).to_not have_content(@passenger1.name)
   end
 
 end

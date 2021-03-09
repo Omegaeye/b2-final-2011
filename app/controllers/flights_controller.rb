@@ -6,12 +6,6 @@ class FlightsController < ApplicationController
 
   def show
     @flight = Flight.find(params[:id])
-  end
-
-  def destroy
-    @flight = Flight.find(params[:id])
-    @passenger = Passenger.find(params[:remove])
-    FlightPassenger.destroy(@passenger.id)
-    redirect_to flight_path(@flight)
+    @passengers = @flight.adult_passengers
   end
 end

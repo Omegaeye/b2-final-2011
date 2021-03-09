@@ -7,6 +7,15 @@ class Flight < ApplicationRecord
   end
 
   def self.pass_count_order
-    joins(:passengers).group(:id).order("passengers.count DESC")
+     joins(:passengers).group(:id).order("passengers.count DESC, flights.departure")
   end
+
+  def adult_passengers
+    passengers.where('age >= 18')
+  end
+
+  def average_age_adult
+    adult_passengers.average(:age)
+  end
+
 end

@@ -32,19 +32,17 @@
         </tr>
       </thead>
       <tbody>
-        <% @flight.passengers.each do |passenger| %>
-          <% if passenger.age > 18 %>
+        <% @passengers.each do |passenger| %>
             <section id="passenger-<%= passenger.id %>">
               <tr style="text-align:center">
                 <td><%= passenger.name %></td>
                 <td><%= passenger.age %></td>
-                <td><%= button_to "Remove Passenger", flight_path(@flight.id), method: :delete, local: true, params:{remove: passenger.id} %></td>
+                <td><%= button_to "Remove Passenger", flight_passenger_path, method: :delete, local: true, params:{remove: passenger.id} %></td>
               </tr>
             </section>
           <% end %>
-        <% end %>
       </tbody>
     </table>
 
     <h2>Average Age of Passengers</h2>
-    <%= @flight.passengers.average_age %>
+    <%= @flight.average_age_adult %>

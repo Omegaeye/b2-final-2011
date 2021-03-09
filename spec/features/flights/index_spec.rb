@@ -7,7 +7,7 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     FlightPassenger.destroy_all
 
     @flight1 = Flight.create!(number: "20", date: "01/01/10", time: "10:00 AM", departure: "Denver", arrival: "Cancun")
-    @flight2 = Flight.create!(number: "21", date: "01/01/10", time: "11:00 AM", departure: "Denver", arrival: "New York City")
+    @flight2 = Flight.create!(number: "21", date: "01/01/10", time: "11:00 AM", departure: "Kansas City", arrival: "New York City")
     @flight3 = Flight.create!(number: "22", date: "01/01/10", time: "9:00 AM", departure: "Manhattan", arrival: "San Franscisco")
     @flight4 = Flight.create!(number: "23", date: "01/01/10", time: "1:00 PM", departure: "Phoenix", arrival: "Salt Lake City")
     @flight5 = Flight.create!(number: "24", date: "01/01/10", time: "2:00 PM", departure: "Las Vegas", arrival: "Bahamas")
@@ -52,10 +52,10 @@ RSpec.describe 'As visitor, when I visit flight index page' do
   # end
 
   it "I see Flights order by passenger count and departure city alphabetical " do
-    expect(@flight1.number).to appear_before(@flight5.number)
-    expect(@flight5.number).to appear_before(@flight2.number)
-    expect(@flight2.number).to appear_before(@flight3.number)
-    expect(@flight3.number).to appear_before(@flight4.number)
+    expect(@flight1.departure).to appear_before(@flight5.departure)
+    expect(@flight5.departure).to appear_before(@flight2.departure)
+    expect(@flight2.departure).to appear_before(@flight3.departure)
+    expect(@flight3.departure).to appear_before(@flight4.departure)
 
   end
 end

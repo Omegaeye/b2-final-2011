@@ -6,11 +6,11 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     Passenger.destroy_all
     FlightPassenger.destroy_all
 
-    @flight1 = Flight.create!(number: "1", date: "01/01/10", time: "10:00 AM", departure: "Denver", arrival: "Cancun")
-    @flight2 = Flight.create!(number: "2", date: "01/01/10", time: "11:00 AM", departure: "Denver", arrival: "New York City")
-    @flight3 = Flight.create!(number: "3", date: "01/01/10", time: "9:00 AM", departure: "Manhattan", arrival: "San Franscisco")
-    @flight4 = Flight.create!(number: "4", date: "01/01/10", time: "1:00 PM", departure: "Phoenix", arrival: "Salt Lake City")
-    @flight5 = Flight.create!(number: "5", date: "01/01/10", time: "2:00 PM", departure: "Las Vegas", arrival: "Bahamas")
+    @flight1 = Flight.create!(number: "20", date: "01/01/10", time: "10:00 AM", departure: "Denver", arrival: "Cancun")
+    @flight2 = Flight.create!(number: "21", date: "01/01/10", time: "11:00 AM", departure: "Denver", arrival: "New York City")
+    @flight3 = Flight.create!(number: "22", date: "01/01/10", time: "9:00 AM", departure: "Manhattan", arrival: "San Franscisco")
+    @flight4 = Flight.create!(number: "23", date: "01/01/10", time: "1:00 PM", departure: "Phoenix", arrival: "Salt Lake City")
+    @flight5 = Flight.create!(number: "24", date: "01/01/10", time: "2:00 PM", departure: "Las Vegas", arrival: "Bahamas")
     @passenger1 = Passenger.create!(name: "Khoa", age: 35)
     @passenger2 = Passenger.create!(name: "Jen", age: 35)
     @passenger3 = Passenger.create!(name: "Dmytri", age: 21)
@@ -46,11 +46,16 @@ RSpec.describe 'As visitor, when I visit flight index page' do
     end
   end
 
-  it "I see Flights order by alphabetical for departure city and passenger counts" do
-    expect(@flight5.departure).to appear_before(@flight3.departure)
-    expect(@flight1.arrival).to appear_before(@flight2.arrival)
+  # it "I see Flights order by alphabetical for departure city and passenger counts" do
+  #   expect(@flight5.departure).to appear_before(@flight3.departure)
+  #   expect(@flight1.arrival).to appear_before(@flight2.arrival)
+  # end
+
+  it "I see Flights order by passenger count and departure city alphabetical " do
+    expect(@flight1.number).to appear_before(@flight5.number)
+    expect(@flight5.number).to appear_before(@flight2.number)
+    expect(@flight2.number).to appear_before(@flight3.number)
+    expect(@flight3.number).to appear_before(@flight4.number)
 
   end
-
-
 end
